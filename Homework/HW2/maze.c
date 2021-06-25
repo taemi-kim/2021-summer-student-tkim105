@@ -12,78 +12,19 @@
 
 // The function to read the maze from a file
 int readMaze(const char* filename, char** maze, int* maze_width, int* maze_height) {
-  
-  
-  //open mazeFile 
-  File* mazeFile = fopen(filename, "r");
-  if (mazeFile == NULL) {
-      //printf("Error: could not open input file\n");
-      return -1;
-  }
-  
-  //read mazeFile into an array
-  arraySize = maze_width * maze_height;
-  int maze[arraySize];
-  int i;
-  
-  for (i = 0; i < arraySize; i++){
-      fscanf(mazeFile, "%d", &maze[i]);
-  }
-  
-  //handle reading errors
-  if(ferror(mazeFile)){
-      //printf("Error: error indicator");
-      return -2
-  }
-  
-  //close input file
-  fclose(mazeFile);
-  return 0; //no error
+  // TODO: implement this function
+  return 0;
 }
 
-// The function to write the maze to a file ( why is maze constant here while it's not in readMaze)
+// The function to write the maze to a file
 int writeMaze(const char* filename, const char* maze, const int maze_width, const int maze_height) {
-  File*mazeFile = fopen(*filename, "w"); //! right mode?
-  if (*mazeFile == NULL) {
-      //printf("Error: could not open input file\n");
-      return -1;
-  }
-  
-  arraySize = maze_width * maze_height;
-  const char* maze[arraySize];
-  
-  //Write data to the file
-  fwrite(*maze, sizeof(char), sizeof(maze), mazeFile);
-  
-  if (*mazeFile == NULL) {
-      //printf("Error: could not open written file\n");
-      return -4;
-  }
- 
-  if(ferror(*mazeFile)) {
-      //printf("Error writing in file\n");
-      return -5;
-  }
-  
+  // TODO: implement this function
   return 0;
 }
 
 // The function to release the maze's data
 void releaseMaze(char** maze) {
   if (*maze) releaseChars(maze);
-
-    //allocate space on heap for desired numbytes
-    // = base type size * space size of the array 
-    char **maze = malloc(sizeof(char) * sizeof(maze));
-    
-    //check if allocation succeeded
-    if (maze == NULL) {
-        //printf("Error allocating space\n"); /? no need to return any error message?
-    }
-    
-    //deallocate the array 
-    free(maze);
-    maze = NULL;
 }
 
 // The function to solve a solution path for the maze

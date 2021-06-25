@@ -1,0 +1,16 @@
+Makefile:
+CC=gcc
+CFLAGS=-std=c99 -pedantic -Wall Wextra
+
+make hw2: print_functions.o maze.o
+	$(CC) -o hw2 print_functions.o maze.o
+
+print_functions.o: print_functions.c print_functions.h
+	$(CC) $(CFLAGS) -c print_functions.c print_functions.h
+
+maze.o: maze.c maze.h
+	$(CC) $(CFLAGS) -c maze.c maze.h
+
+clean:
+	rm -f *.o hw2
+
