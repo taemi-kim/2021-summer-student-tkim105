@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
   // check input arguments
   // solve maze: ./hw2 <maze_file>
   // gen maze: ./hw2 <maze_file> <width> <height> [threshold = 0.5] [seed = 0]
-  if (/*TODO: Replace this stub*/1) return_code = 2; // invalid input arguments
+  if (0) return_code = 2; // invalid input arguments
   else {
     char* maze = NULL;
     int maze_width = 0;
@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
     if (argc == 2) { // solve maze
       // read maze file
       return_code = readMaze(argv[1], &maze, &maze_width, &maze_height);
+      //printf("%d\n",return_code);
       if (!return_code) {
         // print maze
         printMaze(maze, maze_width, maze_height);
@@ -42,8 +43,13 @@ int main(int argc, char* argv[]) {
       // parse input arguments
       int seed = 0;
       double threshold = 0.5;
-      // TODO: add your argument parsing code and input validation code here
-      // remember to set the correct return_code
+      int maze_width = 0;
+      int maze_height = 0;
+      
+      //input validation
+      if (atoi(argv[2]) <= 0 || atoi(argv[3]) <= 0) {
+          return_code =  -3;
+      }
       
       if (!return_code) {
         // gen maze

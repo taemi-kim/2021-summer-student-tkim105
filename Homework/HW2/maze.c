@@ -36,13 +36,41 @@ int readMaze(const char* filename, char** maze, int* maze_width, int* maze_heigh
 
 // The function to write the maze to a file
 int writeMaze(const char* filename, const char* maze, const int maze_width, const int maze_height) {
-  // TODO: implement this function
+
+  int firstline[2] = {maze_width, maze_height}; 
+ 
+  //open mazeFile  
+  FILE*mazeFile = fopen(filename, "w");
+    
+  // reading error
+  if (mazeFile == NULL) {
+      return -4;
+  }
+
+  // writing error
+  if (ferror(mazeFile)) {
+      return -5;
+  }
+  
+  if (mazeFile) {
+    //Write width and height on the top of the file
+    fwrite(firstline, sizeof(firstline), sizeof(int), mazeFile);
+
+    //Write data to the file
+    fwrite(maze, sizeof(maze), sizeof(char),  mazeFile);
+      
+  }
+  
   return 0;
 }
 
 // The function to release the maze's data
 void releaseMaze(char** maze) {
   if (*maze) releaseChars(maze);
+    
+    //deallocate the dynamically allocated array 
+    free(*maze);
+    maze = NULL;
 }
 
 // The function to solve a solution path for the maze
@@ -59,49 +87,49 @@ int solvePath(const char* maze, const int maze_width, const int maze_height, con
 
 // The function to generate a maze
 void genMaze(char** maze, const int maze_width, const int maze_height, const double threshold, const int seed) {
+
+  int size;
+  size = maze_width * maze_height;
+    *maze = malloc(sizeof(char) * size);
   
     //Initiallize a random seed
     srand(seed);
     
     // Generate a start position 
-    const int column_s = rand() % maze_width + 1;
-    const int row_s = rand() % maze_height + 1;
+    int column_s = (rand() % (maze_width - 2)) + 1;
+    int row_s = (rand() % (maze_height - 2)) + 1;
     
-    srand(seed);
     
-    // Generate a end position
-    const int column_e = rand() % maze_width + 1;
-    const int row_e = rand() % maze_height + 1;
-   
+    // Generate an end position
+    int column_e = (rand() % (maze_width - 2)) + 1;
+    int row_e = (rand() % (maze_height - 2)) + 1;
+
     
     for (int i = 0; i < maze_height; i++) {
         for (int j = 0; j < maze_width; j++){
             // Set the boundary walls 
-            if (i == 0 || i == maze_height - 1) {
-                maze[i*maze_width+j] = "#";
-                break;
-            } else if (j == 0 || j == maze_width - 1) {
-                maze[i*maze_width+j] = "#";
-                break;
-                
-            } else if (i == row_s && j == column_s) {
-                maze[i*maze_width+j] = "@";
-                break;
-                
-            } else if (i == row_e && j == column_e) {
-                maze[i*maze_width+j] = "<";
-                break;
-            } 
-            
-            double validNum = rand() % (0 - 1) + 1;
-            if (validNum >= threshold) {
-                maze[i*maze_width+j] = "#";
-            }else {
-                maze[i*maze_width+j] = " ";
-            }
+	  if (i == 0||i == maze_height - 1||j == 0||j == maze_width - 1) {
+	   maze[i*maze_width+j] = "#";
+	    
+	  } else if (i == row_s && j == column_s) {
+	    maze[i*maze_width+j] = "@";
+
+	  } else if (i == row_e && j == column_e) {
+	    maze[i*maze_width+j] = "<";
+
+	  } else {
+	    double validNum = (double)rand()/RAND_MAX;
+	    if (validNum >= threshold) {
+	      maze[i*maze_width+j] = "#";
+	     
+	    } else {
+	      maze[i*maze_width+j] = " ";
+
+	    }
+	  }
                     
         }
-    }
+    }printf("\n");
   
 }
 
