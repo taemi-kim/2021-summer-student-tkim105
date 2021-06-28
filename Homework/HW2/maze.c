@@ -54,13 +54,20 @@ int writeMaze(const char* filename, const char* maze, const int maze_width, cons
   
   if (mazeFile) {
     //Write width and height on the top of the file
-    fwrite(firstline, sizeof(firstline), sizeof(int), mazeFile);
+    //fwrite(firstline, sizeof(firstline), sizeof(int), mazeFile);
+    fprintf(mazeFile,"%d %d\n",maze_width,maze_height);
+    for (int i = 0; i < maze_height; i++) {
+      for (int j = 0; j < maze_width; j++) {
+          fprintf(mazeFile,"%c", (maze)[i* maze_width + j]); //one dim = needs dereference, prioritize deref()  
+      }
+      fprintf(mazeFile,"\n"); //& = address / turning it to the pointer                               
+  }
 
     //Write data to the file
-    fwrite(maze, sizeof(maze), sizeof(char),  mazeFile);
+    // fwrite(maze, sizeof(maze), sizeof(char),  mazeFile);
       
   }
-  
+  fclose(mazeFile);
   return 0;
 }
 
@@ -75,14 +82,35 @@ void releaseMaze(char** maze) {
 
 // The function to solve a solution path for the maze
 int solveMaze(const char* maze, const int maze_width, const int maze_height, char** sol) {
-  // TODO: implement this function
+
+
   return solvePath(maze, maze_width, maze_height, 0, 0, *sol); // TODO: replace this stub
 }
 
 // The function to solve a solution path recursively
-int solvePath(const char* maze, const int maze_width, const int maze_height, const int col, const int row, char* sol) {
-  // TODO: implement this function
-  return 0; // TODO: replace this stub
+int solvePath(const char* maze, const int maze_width, const int maze_height, const int col, const int row, char* sol) {/*
+  if (*current == ">" ) {
+      return 0;
+  }
+  sol[row * maze_width + column] = visited//index multiplication] = 'v'
+  if (*current == " ") {
+      *current = sol;
+      
+      if (solvePath(&maze, maze_width, maze_height, col - 1, row, sol)) { //left
+          return 0;
+          
+      }if (solvePath(&maze, maze_width, maze_height, col + 1, row, sol)) { //right
+          return 0;
+          
+      }if (solvePath(&maze, maze_width, maze_height, col, row + 1, sol)) { //up
+          return 0;
+          
+      }if (solvePath(&maze, maze_width, maze_height, col, row - 1, sol)) { //down
+          return 0;
+      }
+														       
+      }*/
+  return 1; // TODO: replace this stub
 }
 
 // The function to generate a maze
@@ -104,41 +132,48 @@ void genMaze(char** maze, const int maze_width, const int maze_height, const dou
     int column_e = (rand() % (maze_width - 2)) + 1;
     int row_e = (rand() % (maze_height - 2)) + 1;
 
-    
+
     for (int i = 0; i < maze_height; i++) {
-        for (int j = 0; j < maze_width; j++){
+      for (int j = 0; j < maze_width; j++){
             // Set the boundary walls 
 	  if (i == 0||i == maze_height - 1||j == 0||j == maze_width - 1) {
-	   maze[i*maze_width+j] = "#";
-	    
-	  } else if (i == row_s && j == column_s) {
-	    maze[i*maze_width+j] = "@";
+	   (*maze)[i*maze_width+j] = '#';
 
+	   
+	  } else if (i == row_s && j == column_s) {
+	    (*maze)[i*maze_width+j] = '@';
+	   
 	  } else if (i == row_e && j == column_e) {
-	    maze[i*maze_width+j] = "<";
+	   (*maze)[i*maze_width+j] ='<';
 
 	  } else {
 	    double validNum = (double)rand()/RAND_MAX;
 	    if (validNum >= threshold) {
-	      maze[i*maze_width+j] = "#";
+	      (*maze)[i*maze_width+j] = '#';
 	     
 	    } else {
-	      maze[i*maze_width+j] = " ";
+	     (*maze)[i*maze_width+j] = ' ';
 
 	    }
 	  }
                     
         }
-    }printf("\n");
+    }
+   
   
 }
+
 
 // The function to release the solution path
 void releaseSolution(char** sol) {
   if (*sol) releaseChars(sol);
+  free(*sol);
+  *sol = NULL;
+
 }
 
 // The function to release dynamically allocated array of characters
 void releaseChars(char** p) {
-  // TODO: implement this function
-}
+  free(*p);
+  *p = NULL;
+ }
