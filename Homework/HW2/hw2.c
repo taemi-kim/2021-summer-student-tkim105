@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
         // solve maze
         char* sol = NULL;
         return_code = solveMaze(maze, maze_width, maze_height, &sol);
+       
         if (!return_code) {
           // print solution
           printSolution(maze, maze_width, maze_height, sol);
@@ -43,11 +44,11 @@ int main(int argc, char* argv[]) {
       // parse input arguments
       int seed = 0;
       double threshold = 0.5;
-      int maze_width = 0;
-      int maze_height = 0;
+      int maze_width = atoi(argv[2]);
+      int maze_height = atoi(argv[3]);
       
       //input validation
-      if (atoi(argv[2]) <= 0 || atoi(argv[3]) <= 0) {
+      if (maze_width <= 0 || maze_height <= 0) {
           return_code =  -3;
       }
       

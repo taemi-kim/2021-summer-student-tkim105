@@ -82,35 +82,58 @@ void releaseMaze(char** maze) {
 
 // The function to solve a solution path for the maze
 int solveMaze(const char* maze, const int maze_width, const int maze_height, char** sol) {
+  *sol = malloc(sizeof(char) * maze_width * maze_height);
 
+  int col;
+  int row;
+  for (int i = 0; i < maze_height; i++) {
+      for (int j = 0; j < maze_width; j++) {
+	(*sol)[i * maze_width + j] = 'u';
+	if ((maze)[i * maze_width + j] == '@') {
+	  col = j;
+	  row = i;
+	 
+	}
+      }
+  }
+  
 
-  return solvePath(maze, maze_width, maze_height, 0, 0, *sol); // TODO: replace this stub
+  return solvePath(maze, maze_width, maze_height, col, row, *sol); // TODO: replace this stub
 }
 
 // The function to solve a solution path recursively
-int solvePath(const char* maze, const int maze_width, const int maze_height, const int col, const int row, char* sol) {/*
-  if (*current == ">" ) {
+int solvePath(const char* maze, const int maze_width, const int maze_height, const int col, const int row, char* sol) {
+  if (maze[row * maze_width + col] == '<' ) {
       return 0;
   }
-  sol[row * maze_width + column] = visited//index multiplication] = 'v'
-  if (*current == " ") {
-      *current = sol;
-      
-      if (solvePath(&maze, maze_width, maze_height, col - 1, row, sol)) { //left
-          return 0;
+  else if (maze[row * maze_width + col] == '#' || sol[row * maze_width + col] == 'v'){
+    
+    return 1;
+    
+  }
+  sol[row * maze_width + col] = 'v';
+ 
+      if (solvePath(maze, maze_width, maze_height, col - 1, row, sol) == 0) { //left
+	sol[row * maze_width + col] = '*';
+	return 0;
           
-      }if (solvePath(&maze, maze_width, maze_height, col + 1, row, sol)) { //right
-          return 0;
-          
-      }if (solvePath(&maze, maze_width, maze_height, col, row + 1, sol)) { //up
-          return 0;
-          
-      }if (solvePath(&maze, maze_width, maze_height, col, row - 1, sol)) { //down
-          return 0;
       }
-														       
-      }*/
-  return 1; // TODO: replace this stub
+      if (solvePath(maze, maze_width, maze_height, col + 1, row, sol)==0) { //right
+	sol[row * maze_width + col] = '*';
+	return 0;
+          
+      }
+      if (solvePath(maze, maze_width, maze_height, col, row - 1, sol)==0) { //up
+	sol[row * maze_width + col] = '*';
+	return 0;
+          
+      }
+      if (solvePath(maze, maze_width, maze_height, col, row + 1, sol)==0) { //down
+	sol[row * maze_width + col] = '*';
+	return 0;
+      }
+														 
+      return 1;
 }
 
 // The function to generate a maze
