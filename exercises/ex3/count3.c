@@ -22,11 +22,14 @@ int main() {
     //         each ascii character
     // HINT: use each char of the text as an offset into the
     //       ascii_count array, then update using increment (++)
-
-
-
-
-
+    for (int i = 0; i <text_len; i++) {
+      for (int j = 0; j < 256; j++) {
+	  if (text[i] == j) {
+	    ascii_count[j]++;
+	  }
+	
+      }
+    }
 
 
     // determine the two most frequently occurring chars
@@ -43,8 +46,20 @@ int main() {
     //         Store second-most-frequent character and its
     //         frequency in next_char and next_freq.
 
-
-
+   for (int j = 0; j < 256; j++) {
+        if (top_freq > ascii_count[j]) {
+	    if (next_freq < ascii_count[j] && ascii_count[j] != top_freq) {
+	      next_freq = ascii_count[j];
+	      next_char = j;
+	    }
+      
+	  }
+          else if (top_freq < ascii_count[j]) {
+            top_freq = ascii_count[j];
+	    top_char = j;
+          }
+        
+      }
 
 
 
