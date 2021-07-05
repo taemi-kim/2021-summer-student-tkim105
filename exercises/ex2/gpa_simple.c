@@ -77,17 +77,17 @@ int main() {
     //convert grade to points
     switch(grade) {
 
-    case 65:
-    case 97: points = 4.0;
+    case 'A':
+    case 'a': points = 4.0;
       break;
-    case 66:
-    case 98: points = 3.0;
+    case 'B':
+    case 'b': points = 3.0;
       break;
-    case 67:
-    case 99: points = 2.0;
+    case 'C':
+    case 'c': points = 2.0;
       break;
-    case 70:
-    case 102: points = 1.0;
+    case 'F':
+    case 'f': points = 1.0;
       break;
     }
     point_sum += points * credits;
