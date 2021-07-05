@@ -59,6 +59,60 @@ int main() {
   //TO DO: add your code here so that your program
   //produces output that would be identical to the
   //given sample run when provided the same input
+  float point_sum = 0;
+  float credit_sum = 0;
+  float points = 0;
+  float gpa = 0;
+  char grade;
+  float credits;
+  
+  printf("Welcome to GPA calculator!\n");
+  printf("Enter grade and credits for each course below (ctrl-d to end):\n");
 
- return 0;
-}
+  int count = 1;
+  printf("course %d: ",count);
+  //scanf("  %c%f\n", grade, credits);
+
+  while (scanf(" %c%f", grade, credits)) {
+    //convert grade to points
+    switch(grade) {
+
+    case 65:
+    case 97: points = 4.0;
+      break;
+    case 66:
+    case 98: points = 3.0;
+      break;
+    case 67:
+    case 99: points = 2.0;
+      break;
+    case 70:
+    case 102: points = 1.0;
+      break;
+    }
+    point_sum += points * credits;
+    credit_sum += credits;
+    count ++;
+    printf("course %d: ",count);
+  }
+ 
+  if (credit_sum > 0) {
+    gpa = point_sum/credit_sum;
+    printf("Your GPA is %.2f\n", gpa);
+
+    if (gpa >= 3.5) {
+      printf("Dean's List\n");
+
+    }
+    else if (gpa <= 2.0) {
+      printf("Uh-oh, Academic Probation...\n");
+
+    }
+
+  }
+  else {
+    printf("No credits attempted; no GPA to report\n");
+  }
+  
+  
+ return 0;}
