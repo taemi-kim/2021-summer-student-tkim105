@@ -21,7 +21,7 @@ int main() {
 
     // strlen is a function that returns the length of the string
     int dna_len = strlen(dna);
-
+    // printf("%d",dna_len);
     // create array to hold the reverse complement, leaving an extra element
     // for the null character since it's not part of the reported length
     char rev_comp[dna_len+1];   
@@ -29,12 +29,27 @@ int main() {
     int rci = 0;  //index into reverse complement array
 
     // TODO: set the value of rev_comp[rci] for every valid index
-
+    for (rci; rci < dna_len+1; rci++) {
+      switch(dna[rci]) {
+      case 'A': rev_comp[rci] = 'T';
+	break;
+      case 'T': rev_comp[rci] = 'A';
+	break;
+      case 'C': rev_comp[rci] = 'G';
+	break;
+      case 'G': rev_comp[rci] = 'C';
+	break;
+	
+      }
+      if (rev_comp[rci] == '\0') {
+	return 0;
+      }
+    }
 
 
 
     // TODO: add the null character to the end of rev_comp
-
+    rev_comp[dna_len + 1] = '\0';
 
 
 
