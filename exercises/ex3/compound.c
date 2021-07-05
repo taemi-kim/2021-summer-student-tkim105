@@ -26,12 +26,17 @@ float compound_interest(float p, float r, int n) {
 
   // Hint: use the pow(...) and exp(...) functions, declared in
   // math.h, for calculations below
-
+  float compoundI;
   if(n > 0) {
     // TODO: Compute and return compound interest
+    compoundI = p * (pow(1 + r,n) - 1);
+    
   } else {
     // TODO: Compute and return continuously compounded interest
+    compoundI = p * exp(r * n);
+
   }
+  return compoundI;
 }
 
 int main(int argc, char *argv[]) {
@@ -43,9 +48,10 @@ int main(int argc, char *argv[]) {
   char * filename = argv[1];  // (copy) pointer to the filename
 
   // TODO: Open filename for reading, handle errors
+  FILE*input = fopen(filename,"r");
 
   // TODO: Open output.txt file for writing, handle errors
-
+  FILE*output = fopen("output.txt","w");
 
   int line = 1;
   float p = 0.0;
@@ -88,6 +94,8 @@ int main(int argc, char *argv[]) {
     //       using "%0.2f %0.2f %0.2f\n" as the fprintf
     //       format string.  Print ci_annual, ci_monthly
     //       then ci_cont.
+    fprintf(output,"%0.2f %0.2f %0.2f\n", ci_annual, ci_monthly, ci_cont);
+
   }
 
   // TODO: return non-0 if error prevented us from completing
