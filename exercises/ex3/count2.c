@@ -26,11 +26,24 @@ int main() {
     // isspace, use relational operators and your knowledge of the
     // characters' ASCII values: http://www.asciitable.com
 
+    for (int i = 0; i < text_len; i++) {
+      if (text[i]) {
+	if ((text[i] > 64 && text[i] < 91) || (text[i] > 96 && text[i] < 123)) {
+	  num_alpha++;
+	  
+	}
+	else if (text[i] >47  && text[i] < 58) {
+	  num_digits++;
+
+	}
+	else {
+	  num_space++;
+	}
+      }
+
+    }
 
     
-
-
-
 
 
     // output results
