@@ -1,6 +1,5 @@
-Makefile:
 CC=gcc
-CFLAGS=-std=c99 -pedantic -Wall Wextra
+CFLAGS=-std=c99 -pedantic -Wall -Wextra -g
 
 hw2: hw2.o print_functions.o maze.o
 	$(CC) -o hw2 hw2.o print_functions.o maze.o

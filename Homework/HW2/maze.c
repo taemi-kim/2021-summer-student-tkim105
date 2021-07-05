@@ -17,16 +17,17 @@ int readMaze(const char* filename, char** maze, int* maze_width, int* maze_heigh
    
   FILE*mazeFile = fopen(filename, "r");
   fscanf(mazeFile,"%d %d\n", maze_width, maze_height);
-  
-  size = *maze_width * *maze_height; //derefernce for real values
-  *maze = malloc(sizeof(char) * size); //to keep the values 
-  
-  //loop 
+
+  //allocate the array
+  size = *maze_width * *maze_height; 
+  *maze = malloc(sizeof(char) * size);  
+
+  //read in the array
   for (int i = 0; i < *maze_height; i++) {
       for (int j = 0; j < *maze_width; j++) {
-          fscanf(mazeFile,"%c", &(*maze)[i* *maze_width + j]); //one dim = needs dereference, prioritize deref()
+          fscanf(mazeFile,"%c", &(*maze)[i* *maze_width + j]); 
       }
-      fscanf(mazeFile, "%c\n", &newChar); //& = address / turning it to the pointer
+      fscanf(mazeFile, "%c\n", &newChar);
   }
   
   //close input file
@@ -36,9 +37,6 @@ int readMaze(const char* filename, char** maze, int* maze_width, int* maze_heigh
 
 // The function to write the maze to a file
 int writeMaze(const char* filename, const char* maze, const int maze_width, const int maze_height) {
-
-  int firstline[2] = {maze_width, maze_height}; 
- 
   //open mazeFile  
   FILE*mazeFile = fopen(filename, "w");
     
@@ -53,19 +51,17 @@ int writeMaze(const char* filename, const char* maze, const int maze_width, cons
   }
   
   if (mazeFile) {
-    //Write width and height on the top of the file
-    //fwrite(firstline, sizeof(firstline), sizeof(int), mazeFile);
+    //write width and height on the top of the file
     fprintf(mazeFile,"%d %d\n",maze_width,maze_height);
+
     for (int i = 0; i < maze_height; i++) {
       for (int j = 0; j < maze_width; j++) {
-          fprintf(mazeFile,"%c", (maze)[i* maze_width + j]); //one dim = needs dereference, prioritize deref()  
-      }
-      fprintf(mazeFile,"\n"); //& = address / turning it to the pointer                               
-  }
+          fprintf(mazeFile,"%c", (maze)[i* maze_width + j]);  
 
-    //Write data to the file
-    // fwrite(maze, sizeof(maze), sizeof(char),  mazeFile);
-      
+      }
+      fprintf(mazeFile,"\n");
+
+    }
   }
   fclose(mazeFile);
   return 0;
@@ -84,11 +80,12 @@ void releaseMaze(char** maze) {
 int solveMaze(const char* maze, const int maze_width, const int maze_height, char** sol) {
   *sol = malloc(sizeof(char) * maze_width * maze_height);
 
+  //declare variables to store the indices
   int col;
   int row;
   for (int i = 0; i < maze_height; i++) {
       for (int j = 0; j < maze_width; j++) {
-	(*sol)[i * maze_width + j] = 'u';
+	(*sol)[i * maze_width + j] = 'u'; //mark the position unvisited
 	if ((maze)[i * maze_width + j] == '@') {
 	  col = j;
 	  row = i;
@@ -98,21 +95,26 @@ int solveMaze(const char* maze, const int maze_width, const int maze_height, cha
   }
   
 
-  return solvePath(maze, maze_width, maze_height, col, row, *sol); // TODO: replace this stub
+  return solvePath(maze, maze_width, maze_height, col, row, *sol);
 }
 
 // The function to solve a solution path recursively
 int solvePath(const char* maze, const int maze_width, const int maze_height, const int col, const int row, char* sol) {
+  //hit the target position
   if (maze[row * maze_width + col] == '<' ) {
       return 0;
   }
+  //hitting/ going throughh wall
   else if (maze[row * maze_width + col] == '#' || sol[row * maze_width + col] == 'v'){
     
     return 1;
     
   }
+
+  //mark the position visited
   sol[row * maze_width + col] = 'v';
- 
+
+  //extend path in each direction and recursively perform solution path
       if (solvePath(maze, maze_width, maze_height, col - 1, row, sol) == 0) { //left
 	sol[row * maze_width + col] = '*';
 	return 0;

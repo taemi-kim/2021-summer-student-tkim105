@@ -4,19 +4,13 @@
 
 int main(void)
 {
-    char input[1024];
+    char input[1024]; //Initializes the input
     printf("Welcome to the number to ASCII art generation program!\n");
-    printf("Enter a number that you want to convert to an ASCII art: <no input, just hit Enter>\n");
-    fgets(input, 1024, stdin);
-    if(input[0] == '\n') {
-        perror("Input is empty!");
-    }
-    printf("Please enter a number: ");
+    printf("Enter a number that you want to convert to an ASCII art: ");
    
-    while (scanf("%[^\n]%*c", input) == 1){
-      
+    while (scanf("%[^\n]%*c", input) == 1){ //Infinite loop until <ctrl+d>.
         int numdigit = strlen(input);
-        int error = 0;
+        int error = 0; //Iniatialized in order to move into next interation after getting wrong input.
         
         for (size_t i = 0; i < strlen(input); i++){
             if(input[i] == ' ') {
@@ -24,12 +18,12 @@ int main(void)
                 error++;
                 break;
                 
-            }else if(input[i] == '\n'){
-                perror("Input is empty!");
+            }else if(input[0] == '\0') {
+                printf("Input is empty!\n");
                 error++;
                 break;
-                
-            }else if(isdigit(input[i]) == 0){
+            }
+            else if(isdigit(input[i]) == 0){
                 printf("\"%s\" is not a number.\n", input);
                 error++;
                 break;
@@ -44,6 +38,7 @@ int main(void)
                
            }printf("+\n");
            
+           //Initializes ASCII character arrays. 
            char* zero[6];
            zero[0]=" _/_/_/ ";
            zero[1]="_/    _/";
@@ -173,6 +168,7 @@ int main(void)
                printf("+--------");
                
            }printf("+\n");
+           error = 0;
            
        }
        
@@ -183,13 +179,15 @@ int main(void)
            printf("Enter a number that you want to convert to an ASCII art: ");
        }
            
+     
         
-            
-        }
-    
+    }
+        printf("Thank you for using the ASCII art program!");
+        return 0;    
+   
     
 
-        
-    printf("\nThank you for using the ASCII art program!");
-    return 0;
+    
+       
+  
 }

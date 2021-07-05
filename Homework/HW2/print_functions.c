@@ -10,15 +10,39 @@
 
 // The function to print the maze
 void printMaze(const char* maze, const int maze_width, const int maze_height) {
-  // TODO: implement this function
+  for (int i = 0; i < maze_height; i++) {
+        for (int j = 0; j < maze_width; j++) {
+            printf("%c", maze[i * maze_width + j]);
+         
+        } 
+      printf("\n");
+    } 
 }
 
 // The function to print the maze's solution
 void printSolution(const char* maze, const int maze_width, const int maze_height, const char* sol) {
-  // TODO: implement this function
+  for (int i = 0; i < maze_height; i++) {
+      for (int j = 0; j < maze_width; j++) {
+	if (sol[i*maze_width+j] == '*') {
+	  printf("%c", sol[i*maze_width+j]);
+
+	}
+	else {
+	  printf("%c", maze[i*maze_width+j]);
+	  
+	}
+      
+      } 
+      printf("\n");
+  } 
+  printf("\n");
+  
 }
 
 // The function to print the error message
 void printError(const int return_code, char* argv[]) {
-  // TODO: implement this function
+  if (return_code==1) {
+    fprintf(stdout, "Info: No solution found for %s\n", argv[1]);
+
+  }
 }
