@@ -29,11 +29,11 @@ float compound_interest(float p, float r, int n) {
   float compoundI;
   if(n > 0) {
     // TODO: Compute and return compound interest
-    compoundI = p * (pow(1 + r,n) - 1);
+    compoundI = p * pow(1 + r/n,n);
     
   } else {
     // TODO: Compute and return continuously compounded interest
-    compoundI = p * exp(r * n);
+    compoundI = p * exp(r);
 
   }
   return compoundI;
@@ -49,16 +49,27 @@ int main(int argc, char *argv[]) {
 
   // TODO: Open filename for reading, handle errors
   FILE*input = fopen(filename,"r");
+  if (input == NULL) {
+    printf("Error : could not open input file\n");
+    return 1;
+
+  }
 
   // TODO: Open output.txt file for writing, handle errors
   FILE*output = fopen("output.txt","w");
+  if (output == NULL) {
+    printf("Error: could not open/write output file\n");
+    return 1;
 
+  }
   int line = 1;
   float p = 0.0;
   float r = 0.0;
   int parse;  // save return value of parsing attempt below
 
   // TODO: parse p, r from file, proceed with loop if successful
+
+  parse = fscanf(input, "%f %f", &p, &r);
   while (parse == 2) {
     
     line++;
@@ -95,15 +106,31 @@ int main(int argc, char *argv[]) {
     //       format string.  Print ci_annual, ci_monthly
     //       then ci_cont.
     fprintf(output,"%0.2f %0.2f %0.2f\n", ci_annual, ci_monthly, ci_cont);
-
+    parse = fscanf(input, "%f %f", &p, &r);
   }
 
+  
   // TODO: return non-0 if error prevented us from completing
+  if (parse != EOF){
+    printf("Error: could not parse line\n");
+    return 2;
 
+  }
   // TODO: use ferror to check both input and output for errors
+  if(ferror(input)) {
+    printf("Error: error indicator was set for input file\n");
+    return 3; 
 
+  }
+  if(ferror(output)) {
+    printf("Error: error indicator was set for output file\n");
+    return 3;
+    
+  }
+  
   // TODO: close both input and output using fclose
-
+  fclose(input);
+  fclose(output);
 
 
   return 0;
