@@ -36,7 +36,7 @@ int main() {
 	  num_digits++;
 
 	}
-	else {
+	else if (text[i] == 32) {
 	  num_space++;
 	}
       }

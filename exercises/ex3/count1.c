@@ -29,7 +29,7 @@ int main() {
     int rci = 0;  //index into reverse complement array
 
     // TODO: set the value of rev_comp[rci] for every valid index
-    for (rci; rci < dna_len+1; rci++) {
+    for (; rci < dna_len+1; rci++) {
       switch(dna[rci]) {
       case 'A': rev_comp[rci] = 'T';
 	break;
@@ -39,11 +39,10 @@ int main() {
 	break;
       case 'G': rev_comp[rci] = 'C';
 	break;
+      default : break;
 	
       }
-      if (rev_comp[rci] == '\0') {
-	return 0;
-      }
+   
     }
 
 
