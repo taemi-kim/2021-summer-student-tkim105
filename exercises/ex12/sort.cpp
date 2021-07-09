@@ -33,7 +33,7 @@ int main( void ) {
   vec.resize(count);
   for (size_t i = 0; i < count; i++) {
     //vec.push_back(dist(rd_eng));
-    vec[i] =dist(rd_eng);
+    vec[i] =  dist(rd_eng);
   }
 
   // print the first 20 values
@@ -56,7 +56,7 @@ int main( void ) {
   
   std::chrono::steady_clock::time_point begin2 = std::chrono::steady_clock::now();
   // TODO: Use the implementation of sort from STL to sort the contents of "vec2"
-  sort(vec.begin(),vec.end());
+  sort(vec2.begin(),vec2.end());
   
   std::chrono::steady_clock::time_point end2 = std::chrono::steady_clock::now();
   
@@ -72,8 +72,8 @@ void sort( std::vector< int > *values ) {
   // TODO: Define the sort function
   if (values->size() < 2) return;
   std::vector<int> left,right;
-  size_t mid_idx = <values->size()/2;
-  for (size_t i=0;i < values->size(); i++) {
+  size_t mid_idx = values->size()/2;
+  for (size_t i = 0; i < values->size(); i++) {
     if (i < mid_idx){
       left.push_back(values->at(i));
     }
@@ -88,6 +88,29 @@ void sort( std::vector< int > *values ) {
 
   //sort left and right
   size_t left_idx = 0, right_idx = 0;
+  for (size_t i = 0; i < values->size(); i++) {
+    if (left_idx == left.size()) {
+      values->at(i) = right[right_idx];
+      ++right_idx;
+
+    }
+    else if (right_idx == right.size()) {
+      values->at(i) = left[left_idx];
+      ++left_idx;
+
+    }
+    else if (left[left_idx] < right[right_idx]) {
+      values->at(i) = left[left_idx];
+      ++left_idx;
+
+    }
+    else {
+      values->at(i) = right[right_idx];
+      ++right_idx;
+      
+    }
+  }
+
 }
 
 
