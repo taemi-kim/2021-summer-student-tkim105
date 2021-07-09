@@ -74,12 +74,20 @@ void sort( std::vector< int > *values ) {
   std::vector<int> left,right;
   size_t mid_idx = <values->size()/2;
   for (size_t i=0;i < values->size(); i++) {
-    if ( i < mid_idx){
-      left.push_back(values -> at(i)
+    if (i < mid_idx){
+      left.push_back(values->at(i));
     }
-
+    else {
+      right.push_back(values->at(i));
+    }
   }
 
+  //recursively call sort
+  sort(&left);
+  sort(&right);
+
+  //sort left and right
+  size_t left_idx = 0, right_idx = 0;
 }
 
 

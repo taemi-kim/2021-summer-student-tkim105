@@ -81,7 +81,7 @@ int main() {
   // it to successively point to each entry in the map in turn.
   // We use it->first and it->second to get current key and value.
   cout << endl;
-  for (it = counters.cbegin();
+  for (map<string, int>::const_iterator it = counters.cbegin();
        it != counters.cend();
        ++it) {
     cout << "word " << it->first << " has " << it->second
@@ -93,41 +93,23 @@ int main() {
   //TODO:  fill in code here to populate words_by_freq
   //Note that this map has int keys and values which are vectors of strings.
   map<int, vector<string> > words_by_freq;
-  int freqW;
-  //int *p; //pointer to search for existing key
-  map<int, vector<string>>::iterator p;
-  vector<string> words;
   
-  for (it = counters.cbegin();
+  for (map<string, int>::const_iterator it = counters.cbegin();
        it != counters.cend();
        ++it) {
+    words_by_freq[it->second].push_back(it->first);
     
-    p = find(words_by_freq.begin(),words_by_freq.end(),it->second);
-
-    if (p != words_by_freq.end()) { //if the frequency is already added in the map key
-      words_by_freq[it->second].push_back(it->first);
-     
-      
-    }
-    else {
-       freqW = it->second;//should I assign or store?
-       words.push_back(it->first);
-       words_by_freq[freqW] = words;
-      
-    }
-    
-
   }
 
 
   
   // TODO: write code here to output the contents of the
   // words_by_freq map, arranged by frequency.
-  for (map<int, vector<string>>::const_iterator WItr= words_by_freq.cbegin();
+  for (map<int, vector<string>>::const_iterator WItr = words_by_freq.cbegin();
        WItr != words_by_freq.cend();
        ++WItr) {
     cout << "Frequency: " << WItr->first << endl;
-    for(long unsigned int i = 0; i < WItr->second.size(); i++) {//is it possible to access the values by it->second?
+    for(size_t i = 0; i < WItr->second.size(); i++) {
 	cout << WItr->second.at(i) << endl;
 	
       } 
