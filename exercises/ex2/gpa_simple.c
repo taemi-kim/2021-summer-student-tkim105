@@ -71,9 +71,9 @@ int main() {
 
   int count = 1;
   printf("course %d: ",count);
-  //scanf("  %c%f\n", grade, credits);
+  //scanf("  %d%f\n", grade, credits);
 
-  while (scanf(" %c%f", grade, credits) != 0) {
+  while (scanf(" %d%lf", grade, credits) != 0) {
     //convert grade to points
     switch(grade) {
 

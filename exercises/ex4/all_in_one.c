@@ -39,7 +39,7 @@ int concat(const char word1[], const char word2[], char result[], int result_cap
 
   }
    //NOTE: you may not use the strcat or strcpy library functions in your solution
-  return -1;
+  return 1;
 }
 
 
