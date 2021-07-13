@@ -57,7 +57,7 @@ bool operator<(const Name &left, const Name &right) {
 typedef vector<string> PhoneNumberCollection;
 map<Name, PhoneNumberCollection> phone_db;
 
-int main(/*argc, **argv*/) { //added argc, argv is this correct? 
+int main() { 
   // TODO: implement
   cout << "Info: " << "Welcome to the Phone Database!" << endl; //info messages
   cout << "Info: " << "Please enter a command" << endl;
