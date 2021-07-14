@@ -74,11 +74,19 @@ int main() {
     string lastname;
     string firstname;
     string type;
-    string phone_number;;
-    ss >> command; //extract commamd 
-      if (command == 'C') { //creates contact
-	ss >> lastname >> firstname;
-	Name newC;
+    string phone_number;
+    Name newC;
+    Name delC;
+    Name addC;
+    Name listC;
+    Name deleteC;
+    int numContact = 0;
+    int numPhone = 0;
+    int indx = 0;
+    ss >> command;
+    switch(command) { //extract commamd 
+    case 'C': //creates contact
+	ss >> lastname >> firstname;	
 	newC.lastname = lastname;
 	newC.firstname = firstname;
 	if(phone_db.find(newC) != phone_db.end()) {
@@ -87,11 +95,11 @@ int main() {
 	else {
 	    phone_db.emplace(newC, PhoneNumberCollection(5)); 
 	    cout << "Result: " << "Contact created" << endl;
-	  }
-      }
-      else if (command == 'D') { //deletes a contact
+	}
+	break;
+      
+    case 'D': //deletes a contact
         ss >> lastname >> firstname;
-        Name delC;
         delC.lastname = lastname;
         delC.firstname = firstname;
         if(phone_db.find(delC) != phone_db.end()) {
@@ -101,27 +109,24 @@ int main() {
           else {
             cout << "Error: " << "Contact not found" << endl;
 	  }
-      }
-      else if (command == 'L') { //list contact names
-	//sort(phone_db.begin(), phone_db.end(), operator<);
-	int numContact = 0;
+	break;
+      
+    case 'L': //list contact names
 	for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); it != phone_db.end(); ++it) {
 	  cout << "Result: " << it->first.lastname << ',' << it->first.firstname << endl;
 	  numContact++;
 	}
 	cout << "Info: " << "There are " << numContact << " contact(s)" << endl;
-      }
-      else if (command == 'P') { //list phone #s for a contact
+	break;
+	
+    case 'P': //list phone #s for a contact
 	ss >> lastname >> firstname;
-	//PhoneNumberCollection PNC; 
-	int numPhone = 0;
-	Name listC;
 	listC.lastname = lastname;
 	listC.firstname = firstname;
 	if(phone_db.find(listC) != phone_db.end()) { //check if the contact exists      
-	  PhoneNumberCollection &PNC = phone_db[listC];
-	  //for (int indx = 0; indx < 5; indx++) 
-	  if (PNC[0] == "" && PNC[1] == "" && PNC[2] == "" && PNC[3] == "" && PNC[4] == "") { //contact exists without phone numbers
+	  PhoneNumberCollection &PNC = phone_db[listC]; 
+	  if (/*PNC[0] == "" && PNC[1] == "" && PNC[2] == "" && PNC[3] == "" && PNC[4] == ""*/PNC.empty()) {
+	    //contact exists without phone numbers
 	    cout << "Info: " << "There are no phone numbers for the contact" << endl;
 	  }
 	  else{
@@ -139,32 +144,28 @@ int main() {
             }
 	    cout << "Info: " << "Found " << numPhone << " phone number(s) for this contact" << endl;
           }
-	  //cout << "Info: " << "Found " << numPhone << " phone number(s) for this contact" << endl;
 	}
 	else {
             cout << "Error: " << "Contact not found" << endl;
 	}
-      }
-      else if (command == 'N') {
+	break;
+    case 'N':
 	ss >> lastname >> firstname >> type >> phone_number;
-        Name addC;
         addC.lastname = lastname;
         addC.firstname = firstname;
-	int length = phone_number.length();
+	//int length = phone_number.length();
 	//invalid phone number
-	if (!isdigit(phone_number[0]) || !isdigit(phone_number[length-1])) {
+	if (!isdigit(phone_number.front()) || !isdigit(phone_number.back())) {
 	  cout << "Error: " << "Not a valid phone number" << endl;
-	  continue;
+	  break;
 	}
 	for (string::iterator sit = phone_number.begin(); sit != phone_number.end(); ++sit) {
 	  if (!isdigit(*sit) && *sit != '-') {
 	    cout << "Error: " << "Not a valid phone number" << endl;
-	    continue;
+	    break;
 	  }
-	} // do I need to add 'else'?  
-	
+	}
 	if (type == "CELL" || type == "HOME" || type == "WORK" || type == "FAX" || type == "VOIP"){
-	  int indx = 0;
 	  if (type == "CELL") indx = 0;
 	  if (type == "HOME") indx = 1;
 	  if (type == "WORK") indx = 2;
@@ -177,7 +178,7 @@ int main() {
               cout << "Result: " << "Phone number replaced" << endl;
 	    }
 	    else {
-	      PNC[indx] = phone_number;; //add the new contact for the type                                 
+	      PNC[indx] = phone_number; //add the new contact for the type                                 
               cout << "Result: " << "Phone number added" << endl;
 	    }
 	  }
@@ -188,8 +189,61 @@ int main() {
 	else {
 	  cout << "Error: " << "Invalid phone number type" << endl;
 	}
+	break;
+      
+    case 'X':
+	ss >> lastname >> firstname >> type;
+	deleteC.lastname = lastname;
+	deleteC.firstname = firstname;
+        if (type == "CELL") indx = 0;
+        if (type == "HOME") indx = 1;
+        if (type == "WORK") indx = 2;
+        if (type == "FAX") indx = 3;
+        if (type == "VOIP") indx = 4;
+	if (phone_db.find(deleteC) != phone_db.end()) {
+	  PhoneNumberCollection &PNC = phone_db[deleteC];
+	  if (PNC[indx] != "") {
+            PNC.erase(PNC.begin() + indx);//how do I change indx into iterator?
+            cout << "Result: " << "Phone number deleted" << endl;
+	  }
+	  else {
+	    PNC[indx] = phone_number; //add the new contact for the type                                             
+            cout << "Error: " << "No phone number of that type" << endl;
+            }
+
+	}
+	else {
+	  cout << "Error: " << "Contact not found" << endl; //one error message should be printed
+	}
+	break;
+      
+    case 'S': //saves data to the named file
+      ss >> filename;
+      ofstream output_file;
+      output_file.open(filename);
+      if (!output_file) {
+	cout << "Error: " << "Could not open output file" << endl;
       }
-      cout << "Info: " << "Please enter a command" << endl;
+      else {
+	size_t numCollection = phone_db.size();
+	output_file << "Number of collections: " << numCollection << endl;
+	output_file << "Items: " << endl;
+	for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); i != phone_db.end(); ++it) {
+	  for (vector<string>::iterator itr = it->second.begin(); itr
+
+	}
+      }
+      break;
+      
+    case 'R': //loads data into database from a file
+      break;
+      
+    case 'Q': //terminates the program
+	cout << "Info: " << "Thank you for using the Phone Database!" << endl;
+	return 0;
+      
+    }
+    cout << "Info: " << "Please enter a command" << endl;
   }
   return 0;
 }
