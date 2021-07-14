@@ -60,7 +60,7 @@ bool operator<(const Name &left, const Name &right) {
 // a map before the comparison function above, only after it.
 
 // TODO: define the other data types used to represent the phone list
-typedef vector<pair<string,string>> PhoneNumberCollection;
+typedef vector<string> PhoneNumberCollection;
 map<Name, PhoneNumberCollection> phone_db;
 
 int main() { 
@@ -85,7 +85,7 @@ int main() {
 	  cout << "Error: " << "Contact already exists" << endl;
 	}
 	else {
-	    phone_db.emplace(newC, PhoneNumberCollection()); //right way to call the empty vector?
+	    phone_db.emplace(newC, PhoneNumberCollection(5)); 
 	    cout << "Result: " << "Contact created" << endl;
 	  }
       }
@@ -104,32 +104,42 @@ int main() {
       }
       else if (command == 'L') { //list contact names
 	//sort(phone_db.begin(), phone_db.end(), operator<);
+	int numContact = 0;
 	for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); it != phone_db.end(); ++it) {
 	  cout << "Result: " << it->first.lastname << ',' << it->first.firstname << endl;
+	  numContact++;
 	}
+	cout << "Info: " << "There are " << numContact << " contact(s)" << endl;
       }
       else if (command == 'P') { //list phone #s for a contact
 	ss >> lastname >> firstname;
-	PhoneNumberCollection PNC; 
+	//PhoneNumberCollection PNC; 
 	int numPhone = 0;
 	Name listC;
 	listC.lastname = lastname;
 	listC.firstname = firstname;
 	if(phone_db.find(listC) != phone_db.end()) { //check if the contact exists      
-	  if (phone_db[listC].empty()) { //contact exists without phone numbers                                   
-            cout << "Info: " << "There are no phone numbers for the contact" << endl;
+	  PhoneNumberCollection &PNC = phone_db[listC];
+	  //for (int indx = 0; indx < 5; indx++) 
+	  if (PNC[0] == "" && PNC[1] == "" && PNC[2] == "" && PNC[3] == "" && PNC[4] == "") { //contact exists without phone numbers
+	    cout << "Info: " << "There are no phone numbers for the contact" << endl;
 	  }
-          for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); it != phone_db.end(); ++it) {
-            for (vector<pair<string,string>>::iterator itr = it->second.begin();
-                 itr != it->second.end(); ++itr) {
-              if(itr->second.length() > 0) { //proceed if phone number exist for the type                              
-                cout << "Result: " << itr->first << "," << itr->second << endl;
-                numPhone++;
-
+	  else{
+	    for (int indx = 0; indx < 5; indx++) {
+	      if(PNC[indx].length() > 0) { //proceed if phone number exist for the type
+		string type;
+		if (indx == 0) type = "CELL";
+		if (indx == 1) type = "HOME";
+		if (indx == 2) type = "WORK";
+		if (indx == 3) type = "FAX";
+		if (indx == 4) type = "VOIP";
+		cout << "Result: " << type << "," << PNC[indx] << endl;
+		numPhone++;
               }
             }
-            cout << "Info: " << "Found " << numPhone << " phone number(s) for this contact" << endl;
+	    cout << "Info: " << "Found " << numPhone << " phone number(s) for this contact" << endl;
           }
+	  //cout << "Info: " << "Found " << numPhone << " phone number(s) for this contact" << endl;
 	}
 	else {
             cout << "Error: " << "Contact not found" << endl;
@@ -137,26 +147,38 @@ int main() {
       }
       else if (command == 'N') {
 	ss >> lastname >> firstname >> type >> phone_number;
-        PhoneNumberCollection PNC;
-	Name addC;
+        Name addC;
         addC.lastname = lastname;
         addC.firstname = firstname;
-	if (phone_number /*The string can only have digits or hypens and must start and end with a digit*/) {
+	int length = phone_number.length();
+	//invalid phone number
+	if (!isdigit(phone_number[0]) || !isdigit(phone_number[length-1])) {
 	  cout << "Error: " << "Not a valid phone number" << endl;
+	  continue;
 	}
+	for (string::iterator sit = phone_number.begin(); sit != phone_number.end(); ++sit) {
+	  if (!isdigit(*sit) && *sit != '-') {
+	    cout << "Error: " << "Not a valid phone number" << endl;
+	    continue;
+	  }
+	} // do I need to add 'else'?  
+	
 	if (type == "CELL" || type == "HOME" || type == "WORK" || type == "FAX" || type == "VOIP"){
-	  PNC.insert(PNC.begin(),make_pair(type,phone_number));
+	  int indx = 0;
+	  if (type == "CELL") indx = 0;
+	  if (type == "HOME") indx = 1;
+	  if (type == "WORK") indx = 2;
+	  if (type == "FAX") indx = 3;
+	  if (type == "VOIP") indx = 4;
 	  if(phone_db.find(addC) != phone_db.end()) {
-	    vector<pair<string,string>>::const_iterator it;
-	    it = find(phone_db[addC].begin(), phone_db[addC].end(),PNC[0].first); //find if the type exists
-	    if (it != phone_db[addC].end()) { //contact exists without phone numbers
-	      //phone_db[addC].at(it).second = PNC[0].second; //update the phone number for the type 
-	      phone_db[addC][it] = make_pair(PNC[0]);
-	      cout << "Result: " << "Phone number replaced" << endl;
+	    PhoneNumberCollection &PNC = phone_db[addC];
+	    if (PNC[indx] != "") {
+	      PNC[indx] = phone_number;
+              cout << "Result: " << "Phone number replaced" << endl;
 	    }
 	    else {
-	      phone_db[addC].push_back(PNC[0]); //add the new contact for the type
-	      cout << "Result: " << "Phone number added" << endl;
+	      PNC[indx] = phone_number;; //add the new contact for the type                                 
+              cout << "Result: " << "Phone number added" << endl;
 	    }
 	  }
 	  else {
