@@ -17,6 +17,7 @@ using std::pair;
 using std::stringstream;
 using std::sort;
 using std::find;
+using std::ofstream;
 
 // define a Name type
 typedef struct {
@@ -75,6 +76,7 @@ int main() {
     string firstname;
     string type;
     string phone_number;
+    string filename;
     Name newC;
     Name delC;
     Name addC;
@@ -83,6 +85,7 @@ int main() {
     int numContact = 0;
     int numPhone = 0;
     int indx = 0;
+    ofstream output_file;
     ss >> command;
     switch(command) { //extract commamd 
     case 'C': //creates contact
@@ -200,10 +203,11 @@ int main() {
         if (type == "WORK") indx = 2;
         if (type == "FAX") indx = 3;
         if (type == "VOIP") indx = 4;
+	
 	if (phone_db.find(deleteC) != phone_db.end()) {
 	  PhoneNumberCollection &PNC = phone_db[deleteC];
 	  if (PNC[indx] != "") {
-            PNC.erase(PNC.begin() + indx);//how do I change indx into iterator?
+            PNC[indx] = "";//how do I change indx into iterator?
             cout << "Result: " << "Phone number deleted" << endl;
 	  }
 	  else {
@@ -219,20 +223,26 @@ int main() {
       
     case 'S': //saves data to the named file
       ss >> filename;
-      ofstream output_file;
       output_file.open(filename);
       if (!output_file) {
 	cout << "Error: " << "Could not open output file" << endl;
       }
       else {
 	size_t numCollection = phone_db.size();
-	output_file << "Number of collections: " << numCollection << endl;
-	output_file << "Items: " << endl;
-	for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); i != phone_db.end(); ++it) {
-	  for (vector<string>::iterator itr = it->second.begin(); itr
+	output_file << numCollection << endl;
+	//output_file << "Items: " << endl;
+	for (map<Name, PhoneNumberCollection>::iterator it = phone_db.begin(); it != phone_db.end(); ++it) {
+	  output_file << it->first.lastname << " " << it->first.firstname << endl;  
+	  for (vector<string>::iterator itr = it->second.begin(); itr != it->second.end(); ++itr) {
+	    for (int i = 0; i < 5; i++) {
+	      output_file << itr[i] << endl;
 
+	    }
+	  }
 	}
+      //output_file.close();
       }
+      output_file.close();
       break;
       
     case 'R': //loads data into database from a file
