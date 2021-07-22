@@ -1,0 +1,158 @@
+#ifndef __DQUEUE_H__
+#define __DQUEUE_H__
+
+// ios forward declaration
+#include <iosfwd>
+
+/**
+ * \class DQueue
+ * \defgroup DQueue
+ * \breif A character dqueue (double-ended queue).
+ */
+class DQueue {
+public:
+  /**
+   * \brief The default constructor
+   *
+   * \detail The default constructor creates an empty DQueue, i.e. both _head and _tail are nullptr.
+   */
+  DQueue();
+  
+  /**
+   * \brief An alternate constructor
+   *
+   * \detail This alternate constructor creates a DQueue with one node that contains the input char. The node is dynamically allocated and both _head and _tail point to the created node.
+   *
+   * \param[in] ch A constant reference to the input character to be added to the DQueue
+   */
+  DQueue(const char& ch);
+  
+  /**
+   * \brief The copy constructor
+   *
+   * \detail The copy constructor creates a copy of the input DQueue (rhs)
+   *
+   * \param[in] rhs A constant reference to the input DQueue object
+   */ 
+  DQueue(const DQueue& rhs);
+  
+  /**
+   * \brief Overloaded operator= to assign a DQueue to another DQueue
+   *
+   * \detail This overloaded operator assigns the input DQueue (rhs) to the current DQueue (*this, the current object).
+   *
+   * \note If the current DQueue is not empty, this function releases the allocated memories if needed. Depending on the implementation, the existing nodes could be updated or reallocated.
+   *
+   * \param[in] rhs A constant reference to the input DQueue object
+   *
+   * \return A reference to the DQueue object
+   */
+  DQueue& operator=(const DQueue& rhs); 
+  
+  /**
+   * \brief The destructor
+   *
+   * \detail The destructor releases allocated memories if needed.
+   */
+  ~DQueue();
+  
+  /**
+   * \brief Overloaded operator<< to enqueue a character to the tail of the DQueue
+   *
+   * \detail This overloaded operator takes an input character and adds it to the tail of the DQueue. It allocates memory for the new node and updates the linkages at the tail of the DQueue.
+   *
+   * \param[in] ch A constant reference to the input character to be added to the DQueue
+   *
+   * \return A reference to the DQueue object
+   */
+  DQueue& operator<<(const char& ch);
+  
+  /**
+   * \brief Overloaded operator>> to dequeue a character from the tail of the DQueue
+   *
+   * \detail This overloaded operator takes a reference to the output character and sets it to the value stored in the tail node if it is not an empty list. If the tail node exists, it is removed from the DQueue and its memory is released.
+   *
+   * \param[out] ch A reference to the output character to be extracted from the DQueue
+   *
+   * \return A reference to the DQueue object
+   */
+  DQueue& operator>>(char& ch);
+  
+  /**
+   * \brief Overloaded operator< to enqueue a character to the head of the DQueue
+   *
+   * \detail This overloaded operator takes an input character and adds it to the head of the DQueue. It allocates memory for the new node and updates the linkages at the head of the DQueue.
+   *
+   * \param[in] ch A constant reference to the input character to be added to the DQueue
+   *
+   * \return A reference to the DQueue object
+   */
+  DQueue& operator<(const char& ch);
+  
+  /**
+   * \brief Overloaded operator> to dequeue a character from the head of the DQueue
+   *
+   * \detail This overloaded operator takes a reference to the output character and sets it to the value stored in the head node if it is not an empty list. If the head node exists, it is removed from the DQueue and its memory is released.
+   *
+   * \param[out] ch A reference to the output character to be extracted from the DQueue
+   *
+   * \return A reference to the DQueue object
+   */
+  DQueue& operator>(char& ch);
+  
+  /**
+   * \brief Overloaded operator== to check if two DQueues are the same
+   *
+   * \detail This operator compares the current DQueue (*this) with the input DQueue (rhs). It returns true if both DQueues are the same node by node. Otherwise, it returns false.
+   *
+   * \param[in] rhs A constant reference to a DQueue object to compare
+   *
+   * \return true if two DQueues are the same node by node, else false
+   */
+  bool operator==(const DQueue &rhs) const;
+  
+  /**
+   * \brief Overloaded operator+ to concatenate two DQueues
+   *
+   * \detail This operator creates a new DQueue by concatenating the current DQueue (*this) and the input DQueue (rhs).
+   *
+   * \param[in] rhs A constant reference to a DQueue object to concatenate to the end of *this
+   *
+   * \return A DQueue object with the concatenated result
+   */
+  DQueue operator+(const DQueue& rhs) const;
+  
+  /**
+   * \brief Overloaded output stream operator<< to print the DQueue
+   *
+   * \detail This operator prints the input DQueue (q) to the ostream (os) in this format data1 -> data2 -> ... -> datax<newline>
+   *   e.g. if we have a DQueue with three elements 'a', 'b', 'c'
+   *        it will print "a -> b -> c\n"
+   *   If the DQueue is empty, it prints "empty queue\n".
+   *
+   * \param[in] os A reference to the output stream object
+   * \param[in] q A constant reference to the input DQueue object
+   *
+   * \return A reference to the output stream object
+   */
+  friend std::ostream& operator<<(std::ostream& os, const DQueue& q);
+  
+private:
+  /// friend DQueueTest struct to allow the test struct access to the private data
+  friend struct DQueueTest;
+  
+  /**
+   * \struct _Node
+   * \brief A private structure to represent a node in a DQueue
+   */
+  struct _Node {
+    char data;    ///< A character node data
+    _Node *next;  ///< A pointer to the next node. nullptr if it is the end node
+    _Node *prev;  ///< A pointer to the previous node. nullptr if it is the head node
+  };
+
+  _Node *_head;   ///< a pointer to the head node of the DQueue
+  _Node *_tail;   ///< a pointer to the tail node of the DQueue
+};
+
+#endif // __DQueue_H__
