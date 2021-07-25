@@ -151,6 +151,20 @@ private:
     _Node *prev;  ///< A pointer to the previous node. nullptr if it is the head node
   };
 
+  /*
+  //getters
+  int get_data() const {return data;}
+  _Node *get_next() const {return next;}
+  _Node *get_prev() const {return prev;}
+  
+  //setters                                                                                                                           
+  void set_data(int value)     { data = value; }
+  void set_next(_Node* ptr) { next = ptr; }
+  void set_prev(_Node* ptr) { prev = ptr; }
+  */
+  void clear();
+  int size;
+  
   _Node *_head;   ///< a pointer to the head node of the DQueue
   _Node *_tail;   ///< a pointer to the tail node of the DQueue
 };

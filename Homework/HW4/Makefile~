@@ -1,0 +1,11 @@
+CXX = g++
+CXXFLAGS = -g -Wall -Wextra -pedantic -std=c++11
+
+DQueueTest : DQueueTest.o Dqueue.o
+	$(CXX) -o DQueueTest DQueueTest.o Dqueue.o
+
+DQueueTest.o : DQueueTest.cpp Dqueue.h
+	$(CXX) $(CXXFLAGS) -c DQueueTest.cpp -o DQueueTest.o
+
+Dqueue.o : Dqueue.cpp Dqueue.h
+	$(CXX) $(CXXFLAGS) -c DQueue.cpp -o DQueue.o
