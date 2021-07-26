@@ -14,40 +14,40 @@ class TDQueue {
  public:
 
   //Default constructor
-  TDQueue();
+  TDQueue<T>();
 
   //Alternate constructor
-  TDQueue(T& ch);
+  TDQueue<T>(T& val);
 
   //Copy constructor
-  TDQueue(const TDQueue& rhs);
+  TDQueue<T>(const TDQueue& rhs);
 
   //Overloaded operator =
-  TDQueue& operator=(const TDQueue& rhs);
+  TDQueue<T>& operator=(const TDQueue& rhs);
 
   //Destructor
-  ~TDQueue();
+  ~TDQueue<T>();
 
   //Overloaded operator <<
-  TDQueue& operator<<(T val);
+  TDQueue<T>& operator<<(T& val);
 
   //Overloaded operator >>
-  TDQueue& operator>>(T val);
+  TDQueue<T>& operator>>(T& val);
 
   //Overloaded operator <
-  TDQueue& operator<(T val);
+  TDQueue<T>& operator<(T& val);
 
   //Overloaded operator >
-  TDQueue& operator>(T val);
+  TDQueue<T>& operator>(T& val);
 
   //Overloaded operator ==
-  bool operator==(const TDQueue &rhs) const;
+  bool operator==(const TDQueue<T>&rhs) const;
 
   //Overloaded operator +
-  TDQueue operator+(const TDQueue& rhs) const;
+  TDQueue<T> operator+(const TDQueue<T>& rhs) const;
 
   //Overloaded output stream operator <<
-  friend std::ostream& operator<<(std::ostream& os, const TDQueue& q);
+  friend std::ostream& operator<<(std::ostream& os, const TDQueue<T>& q);
   
  private:
   friend struct TDQueueTest;

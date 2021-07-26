@@ -1,5 +1,4 @@
-template< typename T >;
-
+template< typename T >
 //Default constructor
 TDQueue<T>::TDQueue(): size(0),_head(nullptr),_tail(nullptr) { }
 
@@ -19,7 +18,7 @@ TDQueue<T>::TDQueue(const TDQueue& rhs) : TDQueue() {//use default constructor t
 
 template<typename T>
 //Overloading operators                                                                                          
-TDQueue& TDQueue<T>::operator<<(T& val) {
+TDQueue<T>& TDQueue<T>::operator<<(T& val) {
    _Node* new_node = new _Node({val,nullptr,nullptr});
     if(!_head) { //if the dQueue is empty                                                                         
      _head = new_node;
@@ -37,7 +36,7 @@ TDQueue& TDQueue<T>::operator<<(T& val) {
   }
 
 template<typename T>
-TDQueue& TDQueue<T>::operator<(T& val) {
+TDQueue<T>& TDQueue<T>::operator<(T& val) {
   _Node* new_node = new _Node({val,nullptr,nullptr});
     if(!_tail) { //if the dQueue is empty                                                                         
      _tail = new_node;
@@ -55,7 +54,7 @@ TDQueue& TDQueue<T>::operator<(T& val) {
   }
 
 template<typename T>
-TDQueue& TDQueue:: operator=(const TDQueue<T>& rhs) {
+TDQueue<T>& TDQueue<T>:: operator=(const TDQueue<T>& rhs) {
    if (this != &rhs) {
     clear(); //release current set                                                                               
     _Node* cur1 = rhs._head;
@@ -89,7 +88,7 @@ void TDQueue<T>::clear() {
 
 template<typename T>
 //Removes last element in the dQueue                                                                             
-TDQueue& TDQueue<T>::operator>>(T val) {
+TDQueue<T>& TDQueue<T>::operator>>(T& val) {
   _Node* cur = _tail;
   if (!cur) {
     return *this;
@@ -107,7 +106,7 @@ TDQueue& TDQueue<T>::operator>>(T val) {
 
 template<typename T>
 //Removes first element in the dQueue                                                                           
-TDQueue& TDQueue<T>::operator>(T val) {
+TDQueue<T>& TDQueue<T>::operator>(T& val) {
   _Node* cur = _head;
   if (!cur) {
     return *this;
@@ -145,7 +144,7 @@ bool TDQueue<T>::operator==(const TDQueue<T>& rhs) const {
   }
 
 template<typename T>
-TDQueue TDQueue<T>::operator+(const TDQueue<T>& rhs) const {
+TDQueue<T> TDQueue<T>::operator+(const TDQueue<T>& rhs) const {
  TDQueue<T> result(*this); //copy constructor                                                                     
  _Node* cur = rhs._head;
  while(cur) {
