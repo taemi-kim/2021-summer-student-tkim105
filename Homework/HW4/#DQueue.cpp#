@@ -116,12 +116,12 @@ DQueue::DQueue(const char& ch) : size(1),_head(new _Node({ch,nullptr,nullptr})),
       return *this;
     }
     else {
-      _Node* temp = cur; //necessary?                                                                             
+      _Node* temp = cur;                                                                              
       ch = cur->data;
       cur->data = ' ';
       _head = cur->next;
       _head->prev = nullptr;
-      delete temp; //or cur?                                                                                       
+      delete temp;                                                                                       
     }
     return *this;
   }

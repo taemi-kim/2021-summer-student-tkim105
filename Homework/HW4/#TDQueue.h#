@@ -41,13 +41,13 @@ class TDQueue {
   TDQueue& operator>(T val);
 
   //Overloaded operator ==
-  bool operator==(const TDQueue &rhs) const;
+  bool operator==(const TDQueue<T>&rhs) const;
 
   //Overloaded operator +
-  TDQueue operator+(const TDQueue& rhs) const;
+  TDQueue operator+(const TDQueue<T>& rhs) const;
 
   //Overloaded output stream operator <<
-  friend std::ostream& operator<<(std::ostream& os, const TDQueue& q);
+  friend std::ostream& operator<<(std::ostream& os, const TDQueue<T>& q);
   
  private:
   friend struct TDQueueTest;
