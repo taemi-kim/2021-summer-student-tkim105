@@ -1,0 +1,4 @@
+tkim105
+I added void clear() function to demonstrate deallocation in the dQueue.
+
+I wasn't able to compile the template DQueue because of the syntax errors. I sincerely hope that I can have a chance to improve on this part and learn more about it.

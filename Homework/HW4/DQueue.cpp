@@ -80,7 +80,7 @@ DQueue::DQueue(const char& ch) : size(1),_head(new _Node({ch,nullptr,nullptr})),
   
   //Removing all items
   void DQueue::clear() {
-    //deallocate all nodes in the list
+    //deallocate all nodes in the dQueue
     _Node* cur = _head;
     while (cur) {
       _Node* temp = cur;
@@ -116,12 +116,12 @@ DQueue::DQueue(const char& ch) : size(1),_head(new _Node({ch,nullptr,nullptr})),
       return *this;
     }
     else {
-      _Node* temp = cur; //necessary?                                                                             
+      _Node* temp = cur;                                                                              
       ch = cur->data;
       cur->data = ' ';
       _head = cur->next;
       _head->prev = nullptr;
-      delete temp; //or cur?                                                                                       
+      delete temp;                                                                                       
     }
     return *this;
   }

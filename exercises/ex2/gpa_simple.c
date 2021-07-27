@@ -63,8 +63,8 @@ int main() {
   float credit_sum = 0;
   float points = 0;
   float gpa = 0;
-  char grade;
-  float credits;
+  char grade = 0;
+  float credits = 0;
   
   printf("Welcome to GPA calculator!\n");
   printf("Enter grade and credits for each course below (ctrl-d to end):\n");
@@ -73,7 +73,7 @@ int main() {
   printf("course %d: ",count);
   //scanf("  %d%f\n", grade, credits);
 
-  while (scanf(" %d%lf", grade, credits) != 0) {
+  while (scanf(" %c%f", &grade, &credits) == 2) {
     //convert grade to points
     switch(grade) {
 

@@ -1,0 +1,275 @@
+commit 254a422ee0035a309343d88e44da7759a614b295
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jul 25 22:43:00 2021 -0400
+
+    in progress of debugging TDQueueTest
+
+commit ab0cd2e36619dfbceab643aefe3ded6479def097
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jul 25 21:58:48 2021 -0400
+
+    in progress of editing template dqueue
+
+commit 82d4e1e464e5610c89a4c5c8a65f8a7377f06d6e
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jul 25 14:15:48 2021 -0400
+
+    done with DQueueTest
+
+commit 074558674ef32a98b45bb4533a80fb3b882ce6b4
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Thu Jul 22 03:22:32 2021 -0400
+
+    DQueue constructor added
+
+commit 5b3d22f1662966868ce390133e7f44bcc7d3d39d
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jul 14 22:44:27 2021 -0400
+
+    Fixing command S and R,finalized with other commands which produces matching result with expected output
+
+commit 62b76f9c938514cb7739f7f80f3ecd004038a08e
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jul 14 19:12:12 2021 -0400
+
+    Working on S and R
+
+commit 0679ae9064c4957f8da4eb7cea6930b71731ec12
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jul 14 15:43:54 2021 -0400
+
+    Done with command C,D,L,P,N
+
+commit c2b603b9539f556ea393014022e30336b2acda2a
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 13 22:48:27 2021 -0400
+
+    Finalized until command L, editing command P and N
+
+commit 0c9473ab6cb68670b782db604e984db6390156f6
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 13 02:58:06 2021 -0400
+
+    Debugged errors
+
+commit e34b20d5be3275840be16f96f9b55e67299983b0
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 12 14:56:54 2021 -0400
+
+    Done with str_to_lower & bool functions/drafted until L command lines
+
+commit 9e11cfb02e3f65cf9e771cffb49871505b13fe9e
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 12 04:18:45 2021 -0400
+
+    Updated starter codes
+
+commit 1ef80944b9bb339adc85fa989c57cd0a4939e6b5
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 12 03:57:32 2021 -0400
+
+    done with ex13 (need to fix errors)
+
+commit c154541a79db93301ec9daba6f08b8e6ed22a971
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jul 9 13:49:21 2021 -0400
+
+    completed sort.cpp
+
+commit a65cc585b216a750edc2ff83daf1075acbf739e7
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jul 9 13:21:18 2021 -0400
+
+    completed main.cpp
+
+commit 1171fd08c44211098e61f73f660ab353d7ac120e
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jul 9 11:27:20 2021 -0400
+
+    updated ex12 / ex13
+
+commit 5467a08380d63586fd7baae502ecba03f59bd549
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jul 7 01:21:24 2021 -0400
+
+    Done with makefile, yet I have coding errors in concat funciton
+
+commit 589396624b0b45cd45dbb9c67de977e08d9661a2
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 6 14:37:26 2021 -0400
+
+    Done with function declaration/writing functions
+
+commit c386c37dedcac3c236f15fda4f94c70cff2e6698
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 6 11:26:53 2021 -0400
+
+    Added Ex4 starter codes
+
+commit 3b230d0efbb3873a1924dcc35241e0dd818b22d5
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 6 11:14:45 2021 -0400
+
+    Fixed errors in count1.c and count2.c
+
+commit 20d4e3bde75b6d03c1f8ac9697a26bb0a3638578
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Tue Jul 6 10:53:34 2021 -0400
+
+    Done with compound.c
+
+commit 644e470b6c38cab819bb99e2064cac0d9ceb1db5
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 17:05:48 2021 -0400
+
+    worked on compound.c until parsing p/r and producing output
+
+commit f9fd6b263ee6d9155ef0373e6f771f0937bcf29a
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 16:28:33 2021 -0400
+
+    done with count3
+
+commit e615b9d636cf541af5a57c53e468c4d4e769879f
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 15:54:04 2021 -0400
+
+    Done with count2
+
+commit 4f7757740c1cd1355a06d23677d08a480f31df4b
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 15:31:38 2021 -0400
+
+    updated the git
+
+commit bbef01db2e6521f974588645f080a0fdfeb3e8a5
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 15:30:52 2021 -0400
+
+    Done with count1
+
+commit 1dc57595a822e7a8139a78c49e57ee338591d46e
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 14:46:07 2021 -0400
+
+    added Ex3 starter codes
+
+commit e7b78884c9f5cc56981bc565cc92b6f5de35153f
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 13:00:23 2021 -0400
+
+    edited gpa_simple.c
+
+commit 377a2b3237ccf70608f34b7426139ab834079cec
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 12:49:47 2021 -0400
+
+    drafted the code, in the process of debugging
+
+commit 4d4d6e94c0054564159f3f035b3eff8861da81e4
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 06:27:50 2021 -0400
+
+    Added starter code gpa_simple.c
+
+commit 8c96fa26629b3289465db60a38c705c184a21b14
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Mon Jul 5 05:38:15 2021 -0400
+
+    created README/renamed my local private and local public repositories
+
+commit 460e7570be4263cb5e04c230c75802361b13b9e2
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jun 27 23:36:37 2021 -0400
+
+    Debugged solveMaze() solvePath() printSolution()using gdb and completed the maze solver
+
+commit cc8aaf7065a1a7ae222c95ab46c2525914eafd5c
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jun 27 22:12:33 2021 -0400
+
+    Finalized maze generator
+
+commit eae198bef95ad468689c3d66312495422f60f9c0
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Sun Jun 27 19:33:51 2021 -0400
+
+    Fixed allocation errors in releaseMaze() and writeMaze() / in progress of changing genMaze()
+
+commit 849d332a0450f882719108f7c315d2bcf6e26ec1
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.EDU>
+Date:   Sun Jun 27 02:22:08 2021 -0400
+
+    Fixed errors in genMaze() function
+
+commit e1d3dd97fdae9125a2b0c231ca0f7e0a85edcd58
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.EDU>
+Date:   Fri Jun 25 18:01:49 2021 -0400
+
+    Edited writeMaze, readMaze, genMaze funcs from maze.c and finished printMaze function from print_functions.c
+
+commit cdb5a5690f1dba412bd9c07c3c05f1fe81e8ff63
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.EDU>
+Date:   Fri Jun 25 11:00:09 2021 -0400
+
+    Edited Makefile
+
+commit cf8e6c130acc3e3c2d64a02a3c5536130fb1a98d
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.EDU>
+Date:   Fri Jun 25 10:38:28 2021 -0400
+
+    Removed empty files I created and added starter codes properly from public repos
+
+commit 252b1c79e9cf0f22b3d2d2e3cc0fc9d9939f0719
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jun 25 08:50:39 2021 -0400
+
+    Drafted WriteMaze() and releaseMaze() functions
+
+commit 5f9a67a8bf428ca56581e8a3530803e8d4fee286
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jun 25 07:09:13 2021 -0400
+
+    Completed drafting readMaze() function
+
+commit b201bb690a6d134fcc894f0a18e554463306906a
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.EDU>
+Date:   Fri Jun 25 06:47:12 2021 -0400
+
+    Added maze.[c|h] and print_functions.[c|h] to the repos
+
+commit d5cfa13a73e8128ed61e04446518cb4435458bbb
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jun 25 04:21:25 2021 -0400
+
+    Created Makefile and hw2.c file
+
+commit 70f608543ea9879f400bcf74fe1da8e4d2758901
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Fri Jun 25 03:58:46 2021 -0400
+
+    Added HW2 directory
+
+commit 5403dc9cc576b4178e0fa816ebc32a06521f1dd7
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jun 23 10:37:52 2021 -0400
+
+    fixed the copied code to remove warnings - matched the datatype strlen with size_t iinstead of int i; deleted unused variable 'size'
+
+commit f17f25b8280c17b70a73cf9cb5142f2b6a9df615
+Author: Taemi Kim <tkim105@ugradx.cs.jhu.edu>
+Date:   Wed Jun 23 10:25:59 2021 -0400
+
+    Added homework directory
+
+commit 0363e0bda572676d18452ada53e1786f3333b8ea
+Author: otllty0304 <85242520+otllty0304@users.noreply.github.com>
+Date:   Wed Jun 23 18:24:10 2021 +0900
+
+    Update README.md
+
+commit c1f3a10486a79bf13ce8fbc84f77959947bd9bc7
+Author: otllty0304 <85242520+otllty0304@users.noreply.github.com>
+Date:   Sat Jun 19 17:44:37 2021 +0900
+
+    Initial commit

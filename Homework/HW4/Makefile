@@ -1,5 +1,6 @@
 CXX = g++
 CXXFLAGS = -g -Wall -Wextra -pedantic -std=c++11
+objects: DQueueTest TDQueueTest
 
 DQueueTest : DQueueTest.o DQueue.o
 	$(CXX) -o DQueueTest DQueueTest.o DQueue.o
@@ -18,3 +19,6 @@ TDQueueTest.o : TDQueueTest.cpp TDQueue.h
 
 TDQueue.o : TDQueue.inc TDQueue.h
 	$(CXX) $(CXXFLAGS) -c TDQueue.inc -o TDQueue.o
+
+clean:
+	-rm *.o $(objects) 
