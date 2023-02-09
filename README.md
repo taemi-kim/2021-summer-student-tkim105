@@ -1,2 +1,3 @@
 # 2021-summer-taemik
-mkdir cs220
+
+Working repository for Intermediate Programming course @Johns Hopkins
